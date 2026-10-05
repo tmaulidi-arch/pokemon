@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pokédex Grid</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <h1><span class="ball"></span> Pokédex</h1>
+    <p>Data from <a href="https://pokeapi.co" target="_blank" rel="noopener">PokéAPI</a></p>
+    <input id="search" type="search" placeholder="Search Pokémon on this page..." aria-label="Search Pokémon by name" autocomplete="off">
+  </header>
+
+  <main>
+    <p id="status" class="status" role="status"></p>
+    <section id="grid" class="grid" aria-live="polite"></section>
+  </main>
+
+  <nav class="pager">
+    <button id="prev" type="button">&larr; Previous</button>
+    <span id="page-label">Page 1</span>
+    <button id="next" type="button">Next &rarr;</button>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+:root {
+  --bg: #12141c;
+  --card: #1d2030;
+  --text: #f3f4f8;
+  --muted: #a3a8bd;
+  --accent: #ffcb05;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: radial-gradient(circle at top, #23264a, var(--bg) 60%) fixed;
+  color: var(--text);
+  min-height: 100vh;
+}
+.hero { text-align: center; padding: 32px 16px 12px; }
+.hero h1 { margin: 0; font-size: clamp(2rem, 6vw, 3rem); letter-spacing: 1px; }
+.hero p { color: var(--muted); margin: 6px 0 18px; }
+.hero a { color: var(--accent); }
+.ball {
+  display: inline-block; width: .8em; height: .8em; border-radius: 50%;
+  background: linear-gradient(#e63946 0 45%, #222 45% 55%, #fff 55%);
+  border: 3px solid #222; vertical-align: -2px;
+  animation: spin 6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+#search {
+  width: min(420px, 100%); padding: 12px 18px; font-size: 1rem;
+  border-radius: 999px; border: 2px solid transparent;
+  background: var(--card); color: var(--text); outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+#search:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255,203,5,.2); }
+
+main { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+.status { text-align: center; color: var(--muted); min-height: 1.5em; }
+.status.error { color: #ff6b6b; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  --type-color: #777;
+  background: linear-gradient(160deg, var(--type-color) -40%, var(--card) 55%);
+  border-radius: 18px; padding: 16px; text-align: center;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 6px 16px rgba(0,0,0,.35);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  animation: pop .4s ease both;
+  transition: transform .25s, box-shadow .25s;
+}
+.card:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 14px 28px rgba(0,0,0,.5), 0 0 0 2px var(--type-color); }
+@keyframes pop { from { opacity: 0; transform: translateY(14px) scale(.95); } }
+
+.card .id { align-self: flex-end; color: var(--muted); font-size: .8rem; font-weight: 700; }
+.card img { width: 130px; height: 130px; object-fit: contain; transition: transform .3s; filter: drop-shadow(0 6px 6px rgba(0,0,0,.4)); }
+.card:hover img { transform: scale(1.12) rotate(-4deg); }
+.card h2 { margin: 0; font-size: 1.15rem; text-transform: capitalize; }
+
+.types { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+.type {
+  padding: 2px 10px; border-radius: 999px; font-size: .72rem; font-weight: 700;
+  text-transform: uppercase; background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.2);
+}
+.meta { color: var(--muted); font-size: .8rem; margin: 0; }
+
+.card button, .pager button {
+  cursor: pointer; border: none; border-radius: 999px; font-weight: 700;
+  padding: 8px 18px; background: var(--accent); color: #222;
+  transition: transform .15s, filter .15s;
+}
+.card button:hover, .pager button:hover:not(:disabled) { transform: scale(1.06); filter: brightness(1.1); }
+.card button:active { transform: scale(.96); }
+button:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+.says {
+  margin: 0; font-size: .85rem; background: rgba(0,0,0,.4);
+  padding: 8px 10px; border-radius: 12px; width: 100%;
+  animation: pop .25s ease both;
+}
+.says[hidden] { display: none; }
+
+.pager { display: flex; justify-content: center; align-items: center; gap: 16px; padding: 28px 16px 40px; }
+.pager button:disabled { opacity: .35; cursor: not-allowed; }
+.pager span { color: var(--muted); min-width: 70px; text-align: center; }
+
+.spinner {
+  display: inline-block; width: 18px; height: 18px; margin-right: 8px;
+  border: 3px solid var(--muted); border-top-color: var(--accent);
+  border-radius: 50%; vertical-align: -3px; animation: spin .8s linear infinite;
+}
+
+@media (max-width: 480px) {
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .card { padding: 12px; }
+  .card img { width: 100px; height: 100px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
